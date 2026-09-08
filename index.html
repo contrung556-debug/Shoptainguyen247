@@ -2,103 +2,149 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datashop Tài Nguyên Tự Động 24/7</title>
-    <!-- Tích hợp bộ thư viện giao diện Tailwind CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DATASHOP PREMIUM - Tự Động 24/7</title>
+    <!-- Thư viện Tailwind CSS & Font chữ cao cấp -->
     <script src="https://tailwindcss.com"></script>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: radial-gradient(circle at top right, #1e1b4b 0%, #090514 60%, #020005 100%);
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* Hiệu ứng viền phát sáng Neon */
+        .neon-border {
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        .neon-border:hover {
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.5);
+        }
+        /* Hiệu ứng bóng đổ nút bấm */
+        .glow-button {
+            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
+        }
+        .glow-button-emerald {
+            box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.4);
+        }
     </style>
 </head>
-<body class="bg-[#0f172a] text-slate-100 min-h-screen flex flex-col justify-between">
+<body class="text-slate-100 min-h-screen flex flex-col justify-between antialiased">
 
-    <!-- Thanh Điều Hướng (Navbar) -->
-    <nav class="bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-800 p-4 shadow-lg shadow-black/10">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <span class="text-2xl">🔥</span>
-                <h1 class="text-xl font-extrabold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    DATASHOP SIÊU TỐC
-                </h1>
+    <!-- Thanh Điều Hướng (Navbar) Cao Cấp -->
+    <nav class="bg-[#0b071e]/70 backdrop-blur-xl border-b border-indigo-500/10 p-4 sticky top-0 z-50 shadow-2xl shadow-black/40">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            
+            <!-- Logo Thương Hiệu -->
+            <div class="flex items-center gap-2.5">
+                <div class="bg-gradient-to-tr from-indigo-500 to-purple-600 p-2 rounded-xl shadow-lg shadow-indigo-500/30">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent uppercase">
+                        Datashop Pro
+                    </h1>
+                    <span class="text-[10px] text-indigo-400/70 font-semibold tracking-widest block uppercase -mt-0.5">Mạng lưới tài nguyên tự động</span>
+                </div>
             </div>
             
-            <!-- Khu vực điều khiển Thành viên / Đăng nhập -->
-            <div id="auth-section" class="flex items-center gap-3">
+            <!-- KHỐI FORM ĐĂNG NHẬP / ĐĂNG KÝ (Đã tối ưu giao diện cực đẹp) -->
+            <div id="auth-section" class="w-full max-w-sm flex flex-col gap-3 bg-[#130d2b]/80 p-4 rounded-2xl border border-indigo-500/20 shadow-xl">
                 <div class="flex gap-2">
-                    <input id="form-user" type="text" placeholder="Tên tài khoản..." class="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-white transition placeholder-slate-500 w-36 sm:w-44">
-                    <input id="form-pass" type="password" placeholder="Mật khẩu..." class="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-white transition placeholder-slate-500 w-28 sm:w-36">
+                    <input id="form-user" type="text" placeholder="Tên tài khoản..." class="w-1/2 bg-[#090514] border border-indigo-500/15 focus:border-indigo-500 px-3 py-2 rounded-xl text-xs text-white focus:outline-none transition placeholder-slate-600 font-medium">
+                    <input id="form-pass" type="password" placeholder="Mật khẩu..." class="w-1/2 bg-[#090514] border border-indigo-500/15 focus:border-indigo-500 px-3 py-2 rounded-xl text-xs text-white focus:outline-none transition placeholder-slate-600 font-medium">
                 </div>
-                <button onclick="handleAuth('login')" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold px-4 py-1.5 rounded-lg text-sm transition shadow-sm">Đăng nhập</button>
-                <button onclick="handleAuth('register')" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold px-4 py-1.5 rounded-lg text-sm transition shadow-md shadow-indigo-950/50">Đăng ký</button>
+                <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="tienHanhDangNhap()" class="w-full bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 font-bold py-2.5 rounded-xl text-xs transition duration-150 active:scale-95">
+                        🔑 Đăng nhập
+                    </button>
+                    <button type="button" onclick="tienHanhDangKy()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-2.5 rounded-xl text-xs transition duration-150 glow-button active:scale-95">
+                        📝 Đăng ký ngay
+                    </button>
+                </div>
             </div>
 
-            <!-- Trạng thái sau khi đăng nhập thành công (Mặc định ẩn) -->
-            <div id="profile-section" class="hidden flex items-center gap-4 bg-slate-800/50 border border-slate-700/60 px-4 py-1.5 rounded-xl">
-                <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-                    <span id="display-name" class="text-sm font-bold text-slate-200">---</span>
+            <!-- Khung thông tin Ví sau khi đăng nhập thành công -->
+            <div id="profile-section" style="display: none;" class="bg-gradient-to-r from-indigo-950/40 to-purple-950/40 backdrop-blur-md border border-indigo-500/20 px-5 py-3 rounded-2xl w-full sm:w-auto justify-between items-center gap-6 shadow-lg shadow-black/20">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50"></div>
+                    <div>
+                        <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block">Xin chào</span>
+                        <span id="display-name" class="text-sm font-bold text-slate-100">---</span>
+                    </div>
                 </div>
-                <div class="h-4 w-px bg-slate-700"></div>
-                <div class="text-sm">
-                    <span class="text-slate-400 text-xs uppercase tracking-wider block font-medium">Ví số dư</span>
-                    <span id="display-balance" class="font-extrabold text-emerald-400 text-base">0đ</span>
+                <div class="h-6 w-px bg-indigo-500/10 hidden sm:block"></div>
+                <div class="text-right">
+                    <span class="text-indigo-300 text-[10px] block font-semibold uppercase tracking-wider">Số dư khả dụng</span>
+                    <span id="display-balance" class="font-extrabold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent text-lg">0đ</span>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Khu vực hiển thị bảng hàng hóa chính -->
-    <main class="max-w-6xl w-full mx-auto mt-10 px-4 mb-auto">
+    <!-- Khu vực hiển thị nội dung chính -->
+    <main class="max-w-6xl w-full mx-auto mt-8 px-4 mb-auto space-y-8">
         
-        <!-- Khối thông báo tài nguyên đã mua thành công (Mặc định ẩn) -->
-        <div id="success-box" class="hidden mb-8 transform transition duration-300">
-            <div class="bg-emerald-950/40 border border-emerald-500/40 rounded-2xl p-5 shadow-xl">
-                <div class="flex items-center gap-2 text-emerald-400 font-bold mb-3">
-                    <span>🎉 MUA HÀNG THÀNH CÔNG!</span>
+        <!-- Khối thông báo tài nguyên đã mua thành công -->
+        <div id="success-box" style="display: none;" class="transform transition duration-300">
+            <div class="bg-gradient-to-r from-emerald-950/30 to-teal-950/30 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-4 sm:p-5 shadow-2xl">
+                <div class="text-emerald-400 font-extrabold mb-2 text-sm flex items-center gap-2">
+                    <span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span>
+                    🎉 ĐÃ MUA THÀNH CÔNG!
                 </div>
-                <p class="text-xs text-slate-400 mb-2">Vui lòng sao chép lại danh sách tài nguyên của bạn bên dưới (Hệ thống đã tự động xóa khỏi kho gốc):</p>
-                <textarea id="result-resource" readonly rows="5" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 font-mono text-sm text-emerald-400 focus:outline-none resize-none"></textarea>
+                <p class="text-[11px] text-slate-400 mb-3">Chạm vào hộp bên dưới để copy danh sách tài nguyên của bạn (Hệ thống đã tự hủy đơn ở kho gốc):</p>
+                <textarea id="result-resource" readonly rows="4" class="w-full bg-[#07040d] border border-emerald-500/20 rounded-xl p-3 font-mono text-xs sm:text-sm text-emerald-400 focus:outline-none resize-none shadow-inner"></textarea>
             </div>
         </div>
 
-        <div class="flex justify-between items-center mb-8">
+        <!-- Tiêu đề danh mục sản phẩm -->
+        <div class="flex justify-between items-center bg-[#110b29]/30 p-4 rounded-2xl border border-indigo-500/5">
             <div>
-                <h2 class="text-2xl font-black text-white tracking-tight">🛒 Kho Hàng Tự Động</h2>
-                <p class="text-sm text-slate-400 mt-1">Hệ thống phân phát tài nguyên sạch, cập nhật liên tục 24/7</p>
+                <h2 class="text-base font-extrabold text-white uppercase tracking-wider flex items-center gap-2">
+                    <span class="text-indigo-400">⚡</span> Kho Hàng Tự Động
+                </h2>
+                <p class="text-[11px] text-slate-400 mt-0.5">Hệ thống phân phát tài nguyên sạch, bàn giao tức thì</p>
             </div>
-            <button onclick="fetchProducts()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-xl text-sm border border-slate-700/80 font-medium transition flex items-center gap-2 shadow-sm">
-                🔄 Làm mới kho
+            <button onclick="fetchProducts()" class="bg-indigo-950/40 hover:bg-indigo-900/60 text-indigo-300 px-3 py-2 rounded-xl text-xs border border-indigo-500/20 font-bold transition duration-150 active:scale-95 flex items-center gap-1.5 shadow-sm">
+                🔄 Làm mới
             </button>
         </div>
 
-        <!-- Lưới kết quả sản phẩm (Tự động hiển thị 4 gói) -->
-        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="col-span-full text-center text-slate-500 py-16 font-medium animate-pulse">
-                Đang kết nối Firebase và tải kho hàng...
+        <!-- Lưới kết quả sản phẩm (Thiết kế Card 3D Phát sáng hiện đại) -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="col-span-full text-center text-slate-500 py-16 text-sm font-medium animate-pulse">
+                Đang kết nối cơ sở dữ liệu Firebase và đồng bộ kho hàng...
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center text-xs text-slate-500 border-t border-slate-800/60 py-6 mt-16 bg-slate-950/20">
-        <p>© 2026 Datashop - Hệ thống giao hàng serverless tự động vận hành an toàn.</p>
+    <!-- Footer cao cấp -->
+    <footer class="text-center text-[10px] text-slate-600 border-t border-indigo-500/5 py-5 bg-[#04020a]/60 mt-16 backdrop-blur-sm">
+        <p>© 2026 DATASHOP PREMIUM. ⚡ Vận hành bởi hệ thống đám mây Serverless an toàn.</p>
     </footer>
 
-    <!-- XỬ LÝ LOGIC API KẾT NỐI SANG GOOGLE APPS SCRIPT -->
+    <!-- XỬ LÝ LOGIC API CHẠY NGẦM -->
     <script>
-        // Đường dẫn API Web App chuẩn xác của bạn
         const API_URL = "https://google.com";
-
         let savedUsername = "";
 
-        // 1. Hàm đồng bộ lấy danh sách 4 sản phẩm từ kho
+        // Định nghĩa icon sang xịn cho từng loại sản phẩm
+        const productIcons = {
+            "prod_1": "🛍️", // Shopee
+            "prod_2": "✉️", // Gmail
+            "prod_3": "👥", // Facebook
+            "prod_4": "🎵"  // TikTok
+        };
+
+        // Hàm lấy danh sách sản phẩm và hiển thị giao diện đẹp
         async function fetchProducts() {
             const grid = document.getElementById('products-grid');
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' }, // Tránh lỗi chặn CORS trình duyệt
+                    headers: { 'Content-Type': 'text/plain' },
                     body: JSON.stringify({ action: 'get_products' })
                 });
                 const resData = await response.json();
@@ -106,57 +152,8 @@
                 if (resData.status === "success") {
                     grid.innerHTML = "";
                     resData.products.forEach(p => {
-                        const productCard = `
-                            <div class="bg-[#1e293b]/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 hover:bg-[#1e293b]/90 transition duration-200 shadow-xl shadow-black/5">
+                        const icon = productIcons[p.id] || "📦";
+                        grid.innerHTML += `
+                            <div class="bg-[#140f2d]/50 neon-border rounded-2xl p-5 flex flex-col justify-between hover:bg-[#181236] transition-all duration-300 shadow-xl flex-1 transform hover:-translate-y-1">
                                 <div>
-                                    <h3 class="font-bold text-base text-white mb-4 line-clamp-2">${p.name}</h3>
-                                    <div class="space-y-2 border-t border-b border-slate-800/80 py-3 my-4">
-                                        <div class="flex justify-between text-xs font-medium">
-                                            <span class="text-slate-400">Đơn giá:</span>
-                                            <span class="text-amber-400 font-bold text-sm">${p.price.toLocaleString()}đ</span>
-                                        </div>
-                                        <div class="flex justify-between text-xs font-medium">
-                                            <span class="text-slate-400">Hiện có trong kho:</span>
-                                            <span class="${p.stock > 0 ? 'text-emerald-400' : 'text-rose-400'} font-bold">${p.stock} cái</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button onclick="executePurchase('${p.id}')" ${p.stock === 0 ? 'disabled' : ''} 
-                                    class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-600 disabled:border-slate-700/40 border border-transparent text-white font-bold py-2.5 rounded-xl text-sm transition shadow-md shadow-indigo-950/20">
-                                    ${p.stock > 0 ? 'Mua tài nguyên' : 'Hết hàng'}
-                                </button>
-                            </div>
-                        `;
-                        grid.innerHTML += productCard;
-                    });
-                }
-            } catch (err) {
-                grid.innerHTML = `<div class="col-span-full text-center text-rose-400 font-medium py-8 bg-rose-950/10 border border-rose-900/30 rounded-xl">Lỗi tải dữ liệu: ${err.message}. Kiểm tra kết nối Internet hoặc Apps Script!</div>`;
-            }
-        }
-
-        // 2. Hàm gom xử lý Đăng nhập & Đăng ký tài khoản
-        async function handleAuth(type) {
-            const user = document.getElementById('form-user').value.trim();
-            const pass = document.getElementById('form-pass').value.trim();
-
-            if (!user || !pass) {
-                return alert("Vui lòng nhập đầy đủ cả tên tài khoản và mật khẩu!");
-            }
-
-            try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({
-                        action: type,
-                        username: user,
-                        password: pass, // Dành cho luồng Đăng ký
-                        pass: pass       // Dành cho luồng Đăng nhập (Khớp code dòng 47 trong file của bạn)
-                    })
-                });
-                const resData = await response.json();
-
-                if (resData.status === "success") {
-                    if (type === "register") {
-                        alert("🎉 Đăng ký thành công! Bạn được tặng sẵn 100,000đ trải nghiệm. Hãy bấm nút Đăng nhập để sử dụng.");
+                                    <div class="flex items-start justify-between gap-2 mb-3">
