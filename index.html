@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DATASHOP PRO - HỆ THỐNG TỰ ĐỘNG</title>
+    <title>NgânMiu.Store - Tài Nguyên Tự Động</title>
     <style>
-        /* TOÀN BỘ CSS THUẦN THIẾT KẾ GIỐNG HỆT 100% ẢNH MẪU - CHỐNG NGHẼN MẠNG */
+        /* CSS THUẦN CHUẨN HTML5 - CHẠY SIÊU TỐC, KHÔNG BỊ CHẶN MẠNG */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #f4f4f4;
+            background-color: #f5f5f7;
             color: #333333;
-            padding-bottom: 30px;
+            padding-bottom: 40px;
         }
-        .container { max-width: 480px; margin: 0 auto; padding: 0 12px; }
+        .container { max-width: 460px; margin: 0 auto; padding: 0 12px; }
         
-        /* Header Đỏ Rực Rỡ */
+        /* Header Đỏ Cam Shopee */
         header {
             background: linear-gradient(180deg, #d32f2f 0%, #b71c1c 100%);
-            padding: 16px;
+            padding: 18px 16px;
             color: #fff;
             text-align: center;
-            border-radius: 0 0 16px 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 0 0 18px 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
         .logo-box { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
-        .logo-icon { width: 32px; h-height: 32px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .logo-icon { width: 32px; height: 32px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
         .logo-text { font-size: 18px; font-weight: 800; letter-spacing: 0.5px; }
         
-        /* Thanh Điểu Hướng Thành Viên trên Header */
+        /* Thanh Điều Hướng Thành Viên trên Header */
         .header-auth-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 8px; max-width: 260px; margin: 0 auto; }
-        .header-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 6px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; }
+        .header-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; }
         
-        /* Khung trạng thái sau đăng nhập (Ảnh mẫu 2) */
+        /* Khung trạng thái sau đăng nhập */
         .header-profile-grid { display: flex; justify-content: space-between; align-items: center; gap: 6px; background: rgba(0,0,0,0.15); padding: 8px 12px; border-radius: 10px; margin-top: 5px; }
-        .profile-btn { background: #b71c1c; border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 6px; }
+        .profile-btn { background: #b71c1c; border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 11px; font-weight: bold; padding: 5px 10px; border-radius: 6px; cursor: pointer; text-decoration: none; }
 
         /* Khung Thông Báo Chạy Chữ */
         .marquee-box {
@@ -63,14 +63,14 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
         .panel-header { font-size: 13px; font-weight: bold; color: #d32f2f; border-left: 4px solid #d32f2f; padding-left: 8px; margin-bottom: 12px; }
-        .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
-        .input-control { width: 50%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 13px; outline: none; }
+        .input-row { display: flex; gap: 8px; margin-bottom: 14px; }
+        .input-control { width: 50%; padding: 12px; border-radius: 10px; border: 1px solid #ccc; font-size: 14px; outline: none; background: #fff; color: #333; }
         .input-control:focus { border-color: #d32f2f; }
         
-        /* Hệ Thống Nút Bấm Lưới Đa Màu Sắc (Giống Hệt Ảnh Mẫu) */
+        /* Hệ Thống Nút Bấm Lưới Đa Màu Sắc */
         .menu-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 10px; margin-top: 14px; }
         .menu-item {
-            padding: 12px;
+            padding: 14px 10px;
             border-radius: 10px;
             font-size: 12px;
             font-weight: bold;
@@ -83,11 +83,11 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
+            text-decoration: none;
         }
-        .menu-item:active { transform: scale(0.97); }
-        .menu-item:disabled { background: #ccc !important; color: #888; cursor: not-allowed; box-shadow: none; }
+        .menu-item:active { transform: scale(0.97); opacity: 0.9; }
         
-        /* Bảng Màu Gradient Khớp Với Từng Nút Trong Ảnh */
+        /* Bảng Màu Gradient */
         .bg-orange { background: linear-gradient(90deg, #ff6f00, #ff8f00); }
         .bg-black { background: linear-gradient(90deg, #1e293b, #0f172a); }
         .bg-rainbow { background: linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6); }
@@ -95,12 +95,11 @@
         .bg-amber { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
         .bg-blue { background: linear-gradient(90deg, #2563eb, #3b82f6); }
         .bg-magenta { background: linear-gradient(90deg, #db2777, #f472b6); }
-        .bg-green { background: linear-gradient(90deg, #10b981, #34d399); }
 
-        /* Hộp Thông Báo Trả Hàng */
-        .success-box { background: #e8f5e9; border: 1px solid #2e7d32; padding: 12px; border-radius: 12px; margin-bottom: 12px; font-size: 13px; }
-        .success-title { color: #2e7d32; font-weight: bold; margin-bottom: 6px; }
-        textarea { width: 100%; padding: 10px; border: 1px solid #c8e6c9; border-radius: 8px; color: #2e7d32; font-family: monospace; font-size: 12px; resize: none; outline: none; background: #fff; }
+        /* Hộp Thông Báo Trả Hàng Mua Thành Công */
+        .success-box { background: #e8f5e9; border: 1px solid #2e7d32; padding: 14px; border-radius: 14px; margin-bottom: 16px; }
+        .success-title { color: #2e7d32; font-size: 13px; font-weight: bold; margin-bottom: 6px; }
+        textarea { width: 100%; padding: 12px; border: 1px solid #c8e6c9; border-radius: 10px; color: #2e7d32; font-family: monospace; font-size: 13px; resize: none; outline: none; background: #fff; }
 
         footer { text-align: center; font-size: 10px; color: #999; margin-top: 30px; }
     </style>
@@ -114,17 +113,17 @@
             <div class="logo-text">NgânMiu.Store</div>
         </div>
         
-        <!-- Khối Đăng Nhập / Đăng Ký trước đăng nhập (Ảnh mẫu 1) -->
+        <!-- Khối Đăng Nhập / Đăng Ký trước đăng nhập -->
         <div id="auth-section" class="header-auth-grid">
-            <button type="button" onclick="tienHanhDangNhap()" class="header-btn">🔑 Đăng nhập</button>
-            <button type="button" onclick="tienHanhDangKy()" class="header-btn">📝 Đăng ký</button>
+            <button onclick="tienHanhDangNhap()" type="button" class="header-btn">🔑 Đăng nhập</button>
+            <button onclick="tienHanhDangKy()" type="button" class="header-btn">📝 Đăng ký</button>
         </div>
 
-        <!-- Khối Ví số dư hiển thị sau đăng nhập thành công (Ảnh mẫu 2) -->
+        <!-- Khối Ví số dư hiển thị sau đăng nhập thành công -->
         <div id="profile-section" style="display: none;" class="w-full">
             <div class="header-profile-grid">
                 <span style="font-size: 12px; font-weight: bold;">👤 <span id="display-name">---</span></span>
-                <button class="profile-btn">Cài Đặt</button>
+                <a href="admin.html" class="profile-btn">Cài Đặt</a>
                 <button onclick="location.reload()" class="profile-btn">Thoát</button>
             </div>
             <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 8px; margin-top: 6px; display: flex; justify-content: space-between; font-size: 12px; font-weight: bold;">
@@ -147,10 +146,10 @@
         <!-- Hộp Trả Hàng (Tự hiện khi mua xong) -->
         <div id="success-box" style="display: none;" class="success-box">
             <div class="success-title">🎉 ĐÃ MUA HÀNG THÀNH CÔNG!</div>
-            <textarea id="result-resource" readonly rows="4" placeholder="Tài nguyên hiển thị ở đây..."></textarea>
+            <textarea id="result-resource" readonly rows="4" placeholder="Tài nguyên của bạn hiện ở đây..."></textarea>
         </div>
 
-        <!-- Khung Nhập Dữ Liệu & Hệ Thống Nút Bấm Lưới (Giống ảnh mẫu) -->
+        <!-- Khung Nhập Dữ Liệu & Hệ Thống Nút Bấm Lưới -->
         <div class="card-panel">
             <div class="panel-header">Nhập Tài Khoản Xác Thực / Mua Hàng</div>
             <div class="input-row" id="inputs-box">
@@ -158,22 +157,22 @@
                 <input id="form-pass" type="password" placeholder="Mật khẩu..." class="input-control">
             </div>
 
-            <!-- Hệ thống nút bấm lưới đa màu sắc đồng bộ hoàn hảo với kho Firebase -->
+            <!-- NÚT BẤM DẠNG INPUT PHẢN HỒI LẬP TỨC 100% KHÔNG BỊ TRÌ HOÃN TRÊN MOBILE -->
             <div class="menu-grid">
-                <button type="button" onclick="executePurchase('prod_1', 'ACC Shopee')" id="btn-prod_1" class="menu-item bg-orange">🧡 Mua ACC Shopee (<span id="stock-prod_1">0</span>)</button>
-                <button type="button" onclick="executePurchase('prod_4', 'ACC Top Tóp')" id="btn-prod_4" class="menu-item bg-black">🖤 Mua ACC Top Tóp (<span id="stock-prod_4">0</span>)</button>
+                <button onclick="executePurchase('prod_1', 'ACC Shopee')" type="button" class="menu-item bg-orange">🧡 Mua ACC Shopee (<span id="stock-prod_1">0</span>)</button>
+                <button onclick="executePurchase('prod_4', 'ACC Top Tóp')" type="button" class="menu-item bg-black">🖤 Mua ACC Top Tóp (<span id="stock-prod_4">0</span>)</button>
                 
-                <button type="button" onclick="executePurchase('prod_3', 'Số Shopee - Top Top')" id="btn-prod_3" class="menu-item bg-rainbow">💙 Mua Số FB/Shopee (<span id="stock-prod_3">0</span>)</button>
-                <button type="button" class="menu-item bg-cyan" disabled>🔍 Lọc Số Shopee</button>
+                <button onclick="executePurchase('prod_3', 'Số FB - Shopee')" type="button" class="menu-item bg-rainbow">💙 Mua Số FB/Shopee (<span id="stock-prod_3">0</span>)</button>
+                <button type="button" class="menu-item bg-cyan" style="opacity: 0.5;">🔍 Lọc Số Shopee</button>
                 
-                <button type="button" class="menu-item bg-amber" disabled>🛒 Deal Sốc 1k</button>
-                <button type="button" class="menu-item bg-orange" disabled>🎟️ Add Voucher</button>
+                <button type="button" class="menu-item bg-amber" style="opacity: 0.5;">🛒 Deal Sốc 1k</button>
+                <button type="button" class="menu-item bg-orange" style="opacity: 0.5;">🎟️ Add Voucher</button>
                 
-                <button type="button" class="menu-item bg-cyan" disabled>🎯 Check Voucher</button>
-                <button type="button" class="menu-item bg-blue" disabled>🔐 Lấy Cookie QR</button>
+                <button type="button" class="menu-item bg-cyan" style="opacity: 0.5;">🎯 Check Voucher</button>
+                <button type="button" class="menu-item bg-blue" style="opacity: 0.5;">🔐 Lấy Cookie QR</button>
                 
-                <button type="button" onclick="executePurchase('prod_2', 'Gmail Ngoại Info')" id="btn-prod_2" class="menu-item bg-blue">📧 Đọc Mail - Thêm Mail (<span id="stock-prod_2">0</span>)</button>
-                <button type="button" class="menu-item bg-magenta" disabled>📊 Thuê Bảng Sheet</button>
+                <button onclick="executePurchase('prod_2', 'Gmail Ngoại Info')" type="button" class="menu-item bg-blue">📧 Đọc Mail - Thêm Mail (<span id="stock-prod_2">0</span>)</button>
+                <button type="button" class="menu-item bg-magenta" style="opacity: 0.5;">📊 Thuê Bảng Sheet</button>
             </div>
         </div>
 
@@ -187,3 +186,4 @@
         const API_URL = "https://google.com";
         let savedUsername = "";
 
+        // Hàm lấy danh mục và số lượng tồn kho thực tế đổ vào giao diện
