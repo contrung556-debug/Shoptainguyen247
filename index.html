@@ -3,142 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DATASHOP PREMIUM - Tự Động 24/7</title>
-    <!-- Thư viện Tailwind CSS & Font chữ cao cấp -->
-    <script src="https://tailwindcss.com"></script>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <title>DATASHOP PREMIUM - TRANG CHỦ</title>
     <style>
+        /* THIẾT KẾ ĐỒNG BỘ 100% PHONG CÁCH CAM - TRẮNG CAO CẤP */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: radial-gradient(circle at top right, #1e1b4b 0%, #090514 60%, #020005 100%);
-            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: #f5f5f7;
+            color: #333333;
+            padding-bottom: 40px;
         }
-        /* Hiệu ứng viền phát sáng Neon */
-        .neon-border {
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+        .container { max-width: 460px; margin: 0 auto; padding: 0 12px; }
+        
+        /* Header dạng hộp bo cong cao cấp */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 20px 16px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            margin-bottom: 16px;
+            text-align: center;
         }
-        .neon-border:hover {
-            box-shadow: 0 0 25px rgba(99, 102, 241, 0.3);
-            border: 1px solid rgba(99, 102, 241, 0.5);
+        .logo-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #e64a19; /* Màu cam Shopee chủ đạo */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
         }
-        /* Hiệu ứng bóng đổ nút bấm */
-        .glow-button {
-            box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.4);
+        .logo-sub { font-size: 11px; color: #757575; font-weight: 500; }
+
+        /* Khối Đăng Nhập / Đăng Ký chống đơ cảm ứng */
+        .auth-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            margin-bottom: 16px;
         }
-        .glow-button-emerald {
-            box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.4);
+        .input-row { display: flex; gap: 10px; margin-bottom: 12px; }
+        .input-style {
+            width: 50%;
+            background: #ffffff;
+            border: 1px solid #dcdcdc;
+            padding: 12px;
+            border-radius: 10px;
+            color: #333;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
         }
+        .input-style:focus { border-color: #e64a19; background-color: #fffbfb; }
+        .btn-grid { display: flex; gap: 10px; }
+        .btn {
+            width: 50%;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .btn-login { background: #f5f5f7; color: #555555; border: 1px solid #dcdcdc; }
+        .btn-register { background: #e64a19; color: #ffffff; box-shadow: 0 4px 12px rgba(230, 74, 25, 0.2); }
+        .btn:active { transform: scale(0.97); }
+
+        /* Khung Ví thành viên sau khi đăng nhập */
+        .wallet-card {
+            background: #ffffff;
+            border-left: 5px solid #10b981;
+            border-top: 1px solid #eaeaea;
+            border-right: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+            padding: 16px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            margin-bottom: 16px;
+        }
+        .user-tag { font-size: 14px; font-weight: 750; color: #333; }
+        .balance-tag { font-size: 18px; font-weight: 800; color: #10b981; }
+
+        /* Thanh phân cách danh mục */
+        .section-bar {
+            font-size: 14px;
+            font-weight: 700;
+            color: #4a4a4a;
+            margin: 20px 0 12px 4px;
+            border-left: 4px solid #e64a19;
+            padding-left: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-refresh { background: none; border: none; color: #e64a19; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+        /* Danh sách Sản phẩm dạng hộp bo tròn, viền xám mờ tinh tế */
+        .products-list { display: flex; flex-direction: column; gap: 12px; }
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            padding: 16px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .prod-info { display: flex; flex-direction: column; gap: 6px; width: 68%; }
+        .prod-name { font-size: 14px; font-weight: 700; color: #333333; line-height: 1.4; }
+        .prod-meta { display: flex; gap: 14px; font-size: 12px; }
+        .price-text { color: #e64a19; font-weight: 800; }
+        .stock-text { color: #2e7d32; font-weight: 700; background: #e8f5e9; padding: 1px 6px; border-radius: 4px; }
+        .stock-empty { color: #c62828; font-weight: 700; background: #ffebee; padding: 1px 6px; border-radius: 4px; }
+        .btn-buy { background: #e64a19; color: #fff; padding: 12px; font-size: 12px; font-weight: 700; border-radius: 10px; border: none; box-shadow: 0 4px 10px rgba(230, 74, 25, 0.15); width: 28%; text-align: center; }
+        .btn-buy:disabled { background: #eaeaea; color: #9e9e9e; box-shadow: none; cursor: not-allowed; }
+
+        /* Khối hiển thị dữ liệu tài nguyên trả về sau khi mua */
+        .success-box { background: #e8f5e9; border: 1px solid #2e7d32; padding: 14px; border-radius: 14px; margin-bottom: 16px; }
+        .success-title { color: #2e7d32; font-size: 13px; font-weight: 800; margin-bottom: 6px; }
+        textarea { width: 100%; background: #ffffff; border: 1px solid #c8e6c9; border-radius: 10px; padding: 12px; color: #2e7d32; font-family: monospace; font-size: 13px; resize: none; outline: none; }
+        
+        footer { text-align: center; font-size: 11px; color: #9e9e9e; margin-top: 40px; }
     </style>
 </head>
-<body class="text-slate-100 min-h-screen flex flex-col justify-between antialiased">
+<body>
 
-    <!-- Thanh Điều Hướng (Navbar) Cao Cấp -->
-    <nav class="bg-[#0b071e]/70 backdrop-blur-xl border-b border-indigo-500/10 p-4 sticky top-0 z-50 shadow-2xl shadow-black/40">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            
-            <!-- Logo Thương Hiệu -->
-            <div class="flex items-center gap-2.5">
-                <div class="bg-gradient-to-tr from-indigo-500 to-purple-600 p-2 rounded-xl shadow-lg shadow-indigo-500/30">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
-                <div>
-                    <h1 class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent uppercase">
-                        Datashop Pro
-                    </h1>
-                    <span class="text-[10px] text-indigo-400/70 font-semibold tracking-widest block uppercase -mt-0.5">Mạng lưới tài nguyên tự động</span>
-                </div>
-            </div>
-            
-            <!-- KHỐI FORM ĐĂNG NHẬP / ĐĂNG KÝ (Đã tối ưu giao diện cực đẹp) -->
-            <div id="auth-section" class="w-full max-w-sm flex flex-col gap-3 bg-[#130d2b]/80 p-4 rounded-2xl border border-indigo-500/20 shadow-xl">
-                <div class="flex gap-2">
-                    <input id="form-user" type="text" placeholder="Tên tài khoản..." class="w-1/2 bg-[#090514] border border-indigo-500/15 focus:border-indigo-500 px-3 py-2 rounded-xl text-xs text-white focus:outline-none transition placeholder-slate-600 font-medium">
-                    <input id="form-pass" type="password" placeholder="Mật khẩu..." class="w-1/2 bg-[#090514] border border-indigo-500/15 focus:border-indigo-500 px-3 py-2 rounded-xl text-xs text-white focus:outline-none transition placeholder-slate-600 font-medium">
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <button type="button" onclick="tienHanhDangNhap()" class="w-full bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-slate-200 font-bold py-2.5 rounded-xl text-xs transition duration-150 active:scale-95">
-                        🔑 Đăng nhập
-                    </button>
-                    <button type="button" onclick="tienHanhDangKy()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-2.5 rounded-xl text-xs transition duration-150 glow-button active:scale-95">
-                        📝 Đăng ký ngay
-                    </button>
-                </div>
-            </div>
+    <header>
+        <div class="logo-title">Datashop Pro</div>
+        <div class="logo-sub">Hệ thống phân phối tài nguyên tự động</div>
+    </header>
 
-            <!-- Khung thông tin Ví sau khi đăng nhập thành công -->
-            <div id="profile-section" style="display: none;" class="bg-gradient-to-r from-indigo-950/40 to-purple-950/40 backdrop-blur-md border border-indigo-500/20 px-5 py-3 rounded-2xl w-full sm:w-auto justify-between items-center gap-6 shadow-lg shadow-black/20">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50"></div>
-                    <div>
-                        <span class="text-[10px] text-slate-400 font-medium uppercase tracking-wider block">Xin chào</span>
-                        <span id="display-name" class="text-sm font-bold text-slate-100">---</span>
-                    </div>
-                </div>
-                <div class="h-6 w-px bg-indigo-500/10 hidden sm:block"></div>
-                <div class="text-right">
-                    <span class="text-indigo-300 text-[10px] block font-semibold uppercase tracking-wider">Số dư khả dụng</span>
-                    <span id="display-balance" class="font-extrabold bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent text-lg">0đ</span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Khu vực hiển thị nội dung chính -->
-    <main class="max-w-6xl w-full mx-auto mt-8 px-4 mb-auto space-y-8">
+    <main class="container">
         
-        <!-- Khối thông báo tài nguyên đã mua thành công -->
-        <div id="success-box" style="display: none;" class="transform transition duration-300">
-            <div class="bg-gradient-to-r from-emerald-950/30 to-teal-950/30 backdrop-blur-md border border-emerald-500/30 rounded-2xl p-4 sm:p-5 shadow-2xl">
-                <div class="text-emerald-400 font-extrabold mb-2 text-sm flex items-center gap-2">
-                    <span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span>
-                    🎉 ĐÃ MUA THÀNH CÔNG!
-                </div>
-                <p class="text-[11px] text-slate-400 mb-3">Chạm vào hộp bên dưới để copy danh sách tài nguyên của bạn (Hệ thống đã tự hủy đơn ở kho gốc):</p>
-                <textarea id="result-resource" readonly rows="4" class="w-full bg-[#07040d] border border-emerald-500/20 rounded-xl p-3 font-mono text-xs sm:text-sm text-emerald-400 focus:outline-none resize-none shadow-inner"></textarea>
+        <!-- Khối Form Đăng Nhập / Đăng Ký -->
+        <div id="auth-section" class="auth-card">
+            <div class="input-row">
+                <input id="form-user" type="text" placeholder="Tên tài khoản..." class="input-style">
+                <input id="form-pass" type="password" placeholder="Mật khẩu..." class="input-style">
+            </div>
+            <div class="btn-grid">
+                <button type="button" id="btn-login-click" class="btn btn-login">🔑 Đăng nhập</button>
+                <button type="button" id="btn-register-click" class="btn btn-register">📝 Đăng ký</button>
             </div>
         </div>
 
-        <!-- Tiêu đề danh mục sản phẩm -->
-        <div class="flex justify-between items-center bg-[#110b29]/30 p-4 rounded-2xl border border-indigo-500/5">
-            <div>
-                <h2 class="text-base font-extrabold text-white uppercase tracking-wider flex items-center gap-2">
-                    <span class="text-indigo-400">⚡</span> Kho Hàng Tự Động
-                </h2>
-                <p class="text-[11px] text-slate-400 mt-0.5">Hệ thống phân phát tài nguyên sạch, bàn giao tức thì</p>
-            </div>
-            <button onclick="fetchProducts()" class="bg-indigo-950/40 hover:bg-indigo-900/60 text-indigo-300 px-3 py-2 rounded-xl text-xs border border-indigo-500/20 font-bold transition duration-150 active:scale-95 flex items-center gap-1.5 shadow-sm">
-                🔄 Làm mới
-            </button>
+        <!-- Khung Ví số dư thành viên (Mặc định ẩn) -->
+        <div id="profile-section" style="display: none;" class="wallet-card">
+            <div class="user-tag">👤 Tài khoản: <span id="display-name">---</span></div>
+            <div class="balance-tag" id="display-balance">0đ</div>
         </div>
 
-        <!-- Lưới kết quả sản phẩm (Thiết kế Card 3D Phát sáng hiện đại) -->
-        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div class="col-span-full text-center text-slate-500 py-16 text-sm font-medium animate-pulse">
-                Đang kết nối cơ sở dữ liệu Firebase và đồng bộ kho hàng...
+        <!-- Khối hiển thị nhận hàng khi mua thành công -->
+        <div id="success-box" style="display: none;" class="success-box">
+            <div class="success-title">🎉 ĐÃ MUA HÀNG THÀNH CÔNG!</div>
+            <textarea id="result-resource" readonly rows="4" placeholder="Tài nguyên của bạn hiện ở đây..."></textarea>
+        </div>
+
+        <!-- Tiêu đề danh mục và nút làm mới -->
+        <div class="section-bar">
+            <span>Danh mục tài nguyên</span>
+            <button onclick="fetchProducts()" class="btn-refresh">🔄 Tải lại kho</button>
+        </div>
+
+        <!-- Danh sách kho hàng tự động -->
+        <div id="products-grid" class="products-list">
+            <div style="text-align: center; color: #9e9e9e; padding: 24px; font-size: 13px;">
+                Đang kết nối API và đồng bộ kho hàng...
             </div>
         </div>
     </main>
 
-    <!-- Footer cao cấp -->
-    <footer class="text-center text-[10px] text-slate-600 border-t border-indigo-500/5 py-5 bg-[#04020a]/60 mt-16 backdrop-blur-sm">
-        <p>© 2026 DATASHOP PREMIUM. ⚡ Vận hành bởi hệ thống đám mây Serverless an toàn.</p>
+    <footer>
+        <p>© 2026 DATASHOP AUTOMATION • PREMIUM VERSION</p>
     </footer>
 
-    <!-- XỬ LÝ LOGIC API CHẠY NGẦM -->
     <script>
         const API_URL = "https://google.com";
         let savedUsername = "";
 
-        // Định nghĩa icon sang xịn cho từng loại sản phẩm
-        const productIcons = {
-            "prod_1": "🛍️", // Shopee
-            "prod_2": "✉️", // Gmail
-            "prod_3": "👥", // Facebook
-            "prod_4": "🎵"  // TikTok
-        };
+        // Liên kết sự kiện chạm cảm ứng cực nhạy cho điện thoại di động
+        document.getElementById('btn-register-click').addEventListener('click', tienHanhDangKy);
+        document.getElementById('btn-register-click').addEventListener('touchstart', function(e) { e.preventDefault(); tienHanhDangKy(); });
 
-        // Hàm lấy danh sách sản phẩm và hiển thị giao diện đẹp
+        document.getElementById('btn-login-click').addEventListener('click', tienHanhDangNhap);
+        document.getElementById('btn-login-click').addEventListener('touchstart', function(e) { e.preventDefault(); tienHanhDangNhap(); });
+
+        // Hàm gọi danh mục hàng hóa
         async function fetchProducts() {
             const grid = document.getElementById('products-grid');
             try {
@@ -152,8 +209,12 @@
                 if (resData.status === "success") {
                     grid.innerHTML = "";
                     resData.products.forEach(p => {
-                        const icon = productIcons[p.id] || "📦";
                         grid.innerHTML += `
-                            <div class="bg-[#140f2d]/50 neon-border rounded-2xl p-5 flex flex-col justify-between hover:bg-[#181236] transition-all duration-300 shadow-xl flex-1 transform hover:-translate-y-1">
-                                <div>
-                                    <div class="flex items-start justify-between gap-2 mb-3">
+                            <div class="product-card">
+                                <div class="prod-info">
+                                    <div class="prod-name">${p.name}</div>
+                                    <div class="prod-meta">
+                                        <span class="price-text">${p.price.toLocaleString()}đ</span>
+                                        <span class="${p.stock > 0 ? 'stock-text' : 'stock-empty'}">${p.stock > 0 ? 'Kho: ' + p.stock + ' cái' : 'Hết hàng'}</span>
+                                    </div>
+                                </div>
