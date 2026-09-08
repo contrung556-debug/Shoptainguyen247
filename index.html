@@ -104,7 +104,7 @@
         }
         .btn-refresh { background: none; border: none; color: #e64a19; font-size: 12px; font-weight: 700; cursor: pointer; }
 
-        /* Danh sách Sản phẩm dạng hộp bo tròn, viền xám mờ tinh tế */
+        /* Danh sách Sản phẩm dạng hộp bo tròn */
         .products-list { display: flex; flex-direction: column; gap: 12px; }
         .product-card {
             background: #ffffff;
@@ -149,8 +149,9 @@
                 <input id="form-pass" type="password" placeholder="Mật khẩu..." class="input-style">
             </div>
             <div class="btn-grid">
-                <button type="button" id="btn-login-click" class="btn btn-login">🔑 Đăng nhập</button>
-                <button type="button" id="btn-register-click" class="btn btn-register">📝 Đăng ký</button>
+                <!-- Gài hàm trực tiếp bằng onclick thuần để cảm ứng ăn ngay, loại bỏ ID trung gian lỗi -->
+                <button type="button" onclick="tienHanhDangNhap()" class="btn btn-login">🔑 Đăng nhập</button>
+                <button type="button" onclick="tienHanhDangKy()" class="btn btn-register">📝 Đăng ký</button>
             </div>
         </div>
 
@@ -188,14 +189,7 @@
         const API_URL = "https://google.com";
         let savedUsername = "";
 
-        // Liên kết sự kiện chạm cảm ứng cực nhạy cho điện thoại di động
-        document.getElementById('btn-register-click').addEventListener('click', tienHanhDangKy);
-        document.getElementById('btn-register-click').addEventListener('touchstart', function(e) { e.preventDefault(); tienHanhDangKy(); });
-
-        document.getElementById('btn-login-click').addEventListener('click', tienHanhDangNhap);
-        document.getElementById('btn-login-click').addEventListener('touchstart', function(e) { e.preventDefault(); tienHanhDangNhap(); });
-
-        // Hàm gọi danh mục hàng hóa
+        // Hàm gọi danh mục hàng hóa từ API
         async function fetchProducts() {
             const grid = document.getElementById('products-grid');
             try {
@@ -218,3 +212,11 @@
                                         <span class="${p.stock > 0 ? 'stock-text' : 'stock-empty'}">${p.stock > 0 ? 'Kho: ' + p.stock + ' cái' : 'Hết hàng'}</span>
                                     </div>
                                 </div>
+                                <button onclick="executePurchase('${p.id}')" ${p.stock === 0 ? 'disabled' : ''} class="btn-buy">
+                                    ${p.stock > 0 ? 'Mua ngay' : 'Hết hàng'}
+                                </button>
+                            </div>
+                        `;
+                    });
+                }
+            } catch (err) {
