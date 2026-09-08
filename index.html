@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datashop Tài Nguyên Tự Động 24/7</title>
+    <!-- Tích hợp bộ thư viện giao diện Tailwind CSS -->
+    <script src="https://tailwindcss.com"></script>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Thanh Điều Hướng (Navbar) -->
+    <nav class="bg-[#1e293b]/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-800 p-4 shadow-lg shadow-black/10">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">🔥</span>
+                <h1 class="text-xl font-extrabold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    DATASHOP SIÊU TỐC
+                </h1>
+            </div>
+            
+            <!-- Khu vực điều khiển Thành viên / Đăng nhập -->
+            <div id="auth-section" class="flex items-center gap-3">
+                <div class="flex gap-2">
+                    <input id="form-user" type="text" placeholder="Tên tài khoản..." class="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-white transition placeholder-slate-500 w-36 sm:w-44">
+                    <input id="form-pass" type="password" placeholder="Mật khẩu..." class="bg-slate-800/80 border border-slate-700 px-3 py-1.5 rounded-lg text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-white transition placeholder-slate-500 w-28 sm:w-36">
+                </div>
+                <button onclick="handleAuth('login')" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold px-4 py-1.5 rounded-lg text-sm transition shadow-sm">Đăng nhập</button>
+                <button onclick="handleAuth('register')" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold px-4 py-1.5 rounded-lg text-sm transition shadow-md shadow-indigo-950/50">Đăng ký</button>
+            </div>
+
+            <!-- Trạng thái sau khi đăng nhập thành công (Mặc định ẩn) -->
+            <div id="profile-section" class="hidden flex items-center gap-4 bg-slate-800/50 border border-slate-700/60 px-4 py-1.5 rounded-xl">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                    <span id="display-name" class="text-sm font-bold text-slate-200">---</span>
+                </div>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div class="text-sm">
+                    <span class="text-slate-400 text-xs uppercase tracking-wider block font-medium">Ví số dư</span>
+                    <span id="display-balance" class="font-extrabold text-emerald-400 text-base">0đ</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Khu vực hiển thị bảng hàng hóa chính -->
+    <main class="max-w-6xl w-full mx-auto mt-10 px-4 mb-auto">
+        
+        <!-- Khối thông báo tài nguyên đã mua thành công (Mặc định ẩn) -->
+        <div id="success-box" class="hidden mb-8 transform transition duration-300">
+            <div class="bg-emerald-950/40 border border-emerald-500/40 rounded-2xl p-5 shadow-xl">
+                <div class="flex items-center gap-2 text-emerald-400 font-bold mb-3">
+                    <span>🎉 MUA HÀNG THÀNH CÔNG!</span>
+                </div>
+                <p class="text-xs text-slate-400 mb-2">Vui lòng sao chép lại danh sách tài nguyên của bạn bên dưới (Hệ thống đã tự động xóa khỏi kho gốc):</p>
+                <textarea id="result-resource" readonly rows="5" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 font-mono text-sm text-emerald-400 focus:outline-none resize-none"></textarea>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-2xl font-black text-white tracking-tight">🛒 Kho Hàng Tự Động</h2>
+                <p class="text-sm text-slate-400 mt-1">Hệ thống phân phát tài nguyên sạch, cập nhật liên tục 24/7</p>
+            </div>
+            <button onclick="fetchProducts()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-xl text-sm border border-slate-700/80 font-medium transition flex items-center gap-2 shadow-sm">
+                🔄 Làm mới kho
+            </button>
+        </div>
+
+        <!-- Lưới kết quả sản phẩm (Tự động hiển thị 4 gói) -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="col-span-full text-center text-slate-500 py-16 font-medium animate-pulse">
+                Đang kết nối Firebase và tải kho hàng...
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center text-xs text-slate-500 border-t border-slate-800/60 py-6 mt-16 bg-slate-950/20">
+        <p>© 2026 Datashop - Hệ thống giao hàng serverless tự động vận hành an toàn.</p>
+    </footer>
+
+    <!-- XỬ LÝ LOGIC API KẾT NỐI SANG GOOGLE APPS SCRIPT -->
+    <script>
+        // Đường dẫn API Web App chuẩn xác của bạn
+        const API_URL = "https://google.com";
+
+        let savedUsername = "";
+
+        // 1. Hàm đồng bộ lấy danh sách 4 sản phẩm từ kho
+        async function fetchProducts() {
+            const grid = document.getElementById('products-grid');
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' }, // Tránh lỗi chặn CORS trình duyệt
+                    body: JSON.stringify({ action: 'get_products' })
+                });
+                const resData = await response.json();
+                
+                if (resData.status === "success") {
+                    grid.innerHTML = "";
+                    resData.products.forEach(p => {
+                        const productCard = `
+                            <div class="bg-[#1e293b]/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-slate-700 hover:bg-[#1e293b]/90 transition duration-200 shadow-xl shadow-black/5">
+                                <div>
+                                    <h3 class="font-bold text-base text-white mb-4 line-clamp-2">${p.name}</h3>
+                                    <div class="space-y-2 border-t border-b border-slate-800/80 py-3 my-4">
+                                        <div class="flex justify-between text-xs font-medium">
+                                            <span class="text-slate-400">Đơn giá:</span>
+                                            <span class="text-amber-400 font-bold text-sm">${p.price.toLocaleString()}đ</span>
+                                        </div>
+                                        <div class="flex justify-between text-xs font-medium">
+                                            <span class="text-slate-400">Hiện có trong kho:</span>
+                                            <span class="${p.stock > 0 ? 'text-emerald-400' : 'text-rose-400'} font-bold">${p.stock} cái</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onclick="executePurchase('${p.id}')" ${p.stock === 0 ? 'disabled' : ''} 
+                                    class="w-full bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-600 disabled:border-slate-700/40 border border-transparent text-white font-bold py-2.5 rounded-xl text-sm transition shadow-md shadow-indigo-950/20">
+                                    ${p.stock > 0 ? 'Mua tài nguyên' : 'Hết hàng'}
+                                </button>
+                            </div>
+                        `;
+                        grid.innerHTML += productCard;
+                    });
+                }
+            } catch (err) {
+                grid.innerHTML = `<div class="col-span-full text-center text-rose-400 font-medium py-8 bg-rose-950/10 border border-rose-900/30 rounded-xl">Lỗi tải dữ liệu: ${err.message}. Kiểm tra kết nối Internet hoặc Apps Script!</div>`;
+            }
+        }
+
+        // 2. Hàm gom xử lý Đăng nhập & Đăng ký tài khoản
+        async function handleAuth(type) {
+            const user = document.getElementById('form-user').value.trim();
+            const pass = document.getElementById('form-pass').value.trim();
+
+            if (!user || !pass) {
+                return alert("Vui lòng nhập đầy đủ cả tên tài khoản và mật khẩu!");
+            }
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify({
+                        action: type,
+                        username: user,
+                        password: pass, // Dành cho luồng Đăng ký
+                        pass: pass       // Dành cho luồng Đăng nhập (Khớp code dòng 47 trong file của bạn)
+                    })
+                });
+                const resData = await response.json();
+
+                if (resData.status === "success") {
+                    if (type === "register") {
+                        alert("🎉 Đăng ký thành công! Bạn được tặng sẵn 100,000đ trải nghiệm. Hãy bấm nút Đăng nhập để sử dụng.");
