@@ -3,220 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DATASHOP PREMIUM - TRANG CHỦ</title>
+    <title>DATASHOP PRO - HỆ THỐNG TỰ ĐỘNG</title>
     <style>
-        /* THIẾT KẾ ĐỒNG BỘ 100% PHONG CÁCH CAM - TRẮNG CAO CẤP */
+        /* TOÀN BỘ CSS THUẦN THIẾT KẾ GIỐNG HỆT 100% ẢNH MẪU - CHỐNG NGHẼN MẠNG */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #f5f5f7;
+            background-color: #f4f4f4;
             color: #333333;
-            padding-bottom: 40px;
+            padding-bottom: 30px;
         }
-        .container { max-width: 460px; margin: 0 auto; padding: 0 12px; }
+        .container { max-width: 480px; margin: 0 auto; padding: 0 12px; }
         
-        /* Header dạng hộp bo cong cao cấp */
+        /* Header Đỏ Rực Rỡ */
         header {
-            background: #ffffff;
-            border-bottom: 1px solid #eaeaea;
-            padding: 20px 16px;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            margin-bottom: 16px;
-            text-align: center;
-        }
-        .logo-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: #e64a19; /* Màu cam Shopee chủ đạo */
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-        .logo-sub { font-size: 11px; color: #757575; font-weight: 500; }
-
-        /* Khối Đăng Nhập / Đăng Ký chống đơ cảm ứng */
-        .auth-card {
-            background: #ffffff;
-            border: 1px solid #eaeaea;
+            background: linear-gradient(180deg, #d32f2f 0%, #b71c1c 100%);
             padding: 16px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            margin-bottom: 16px;
+            color: #fff;
+            text-align: center;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .input-row { display: flex; gap: 10px; margin-bottom: 12px; }
-        .input-style {
-            width: 50%;
+        .logo-box { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+        .logo-icon { width: 32px; h-height: 32px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .logo-text { font-size: 18px; font-weight: 800; letter-spacing: 0.5px; }
+        
+        /* Thanh Điểu Hướng Thành Viên trên Header */
+        .header-auth-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 8px; max-width: 260px; margin: 0 auto; }
+        .header-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 6px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; }
+        
+        /* Khung trạng thái sau đăng nhập (Ảnh mẫu 2) */
+        .header-profile-grid { display: flex; justify-content: space-between; align-items: center; gap: 6px; background: rgba(0,0,0,0.15); padding: 8px 12px; border-radius: 10px; margin-top: 5px; }
+        .profile-btn { background: #b71c1c; border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 11px; font-weight: bold; padding: 4px 10px; border-radius: 6px; }
+
+        /* Khung Thông Báo Chạy Chữ */
+        .marquee-box {
             background: #ffffff;
-            border: 1px solid #dcdcdc;
-            padding: 12px;
-            border-radius: 10px;
-            color: #333;
-            font-size: 14px;
-            outline: none;
-            transition: 0.2s;
+            border: 1px solid #e0e0e0;
+            padding: 10px 12px;
+            border-radius: 12px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2e7d32;
         }
-        .input-style:focus { border-color: #e64a19; background-color: #fffbfb; }
-        .btn-grid { display: flex; gap: 10px; }
-        .btn {
-            width: 50%;
+        .marquee-text { width: 100%; overflow: hidden; white-space: nowrap; }
+        .marquee-text marquee { width: 100%; }
+
+        /* Form Nhập Dữ Liệu Tạm Thời */
+        .card-panel {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #e0e0e0;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .panel-header { font-size: 13px; font-weight: bold; color: #d32f2f; border-left: 4px solid #d32f2f; padding-left: 8px; margin-bottom: 12px; }
+        .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+        .input-control { width: 50%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 13px; outline: none; }
+        .input-control:focus { border-color: #d32f2f; }
+        
+        /* Hệ Thống Nút Bấm Lưới Đa Màu Sắc (Giống Hệt Ảnh Mẫu) */
+        .menu-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 10px; margin-top: 14px; }
+        .menu-item {
             padding: 12px;
             border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
             border: none;
             cursor: pointer;
-            transition: 0.1s;
-        }
-        .btn-login { background: #f5f5f7; color: #555555; border: 1px solid #dcdcdc; }
-        .btn-register { background: #e64a19; color: #ffffff; box-shadow: 0 4px 12px rgba(230, 74, 25, 0.2); }
-        .btn:active { transform: scale(0.97); }
-
-        /* Khung Ví thành viên sau khi đăng nhập */
-        .wallet-card {
-            background: #ffffff;
-            border-left: 5px solid #10b981;
-            border-top: 1px solid #eaeaea;
-            border-right: 1px solid #eaeaea;
-            border-bottom: 1px solid #eaeaea;
-            padding: 16px;
-            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            margin-bottom: 16px;
+            justify-content: center;
+            gap: 6px;
         }
-        .user-tag { font-size: 14px; font-weight: 750; color: #333; }
-        .balance-tag { font-size: 18px; font-weight: 800; color: #10b981; }
-
-        /* Thanh phân cách danh mục */
-        .section-bar {
-            font-size: 14px;
-            font-weight: 700;
-            color: #4a4a4a;
-            margin: 20px 0 12px 4px;
-            border-left: 4px solid #e64a19;
-            padding-left: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .btn-refresh { background: none; border: none; color: #e64a19; font-size: 12px; font-weight: 700; cursor: pointer; }
-
-        /* Danh sách Sản phẩm dạng hộp bo tròn */
-        .products-list { display: flex; flex-direction: column; gap: 12px; }
-        .product-card {
-            background: #ffffff;
-            border: 1px solid #eaeaea;
-            padding: 16px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-        .prod-info { display: flex; flex-direction: column; gap: 6px; width: 68%; }
-        .prod-name { font-size: 14px; font-weight: 700; color: #333333; line-height: 1.4; }
-        .prod-meta { display: flex; gap: 14px; font-size: 12px; }
-        .price-text { color: #e64a19; font-weight: 800; }
-        .stock-text { color: #2e7d32; font-weight: 700; background: #e8f5e9; padding: 1px 6px; border-radius: 4px; }
-        .stock-empty { color: #c62828; font-weight: 700; background: #ffebee; padding: 1px 6px; border-radius: 4px; }
-        .btn-buy { background: #e64a19; color: #fff; padding: 12px; font-size: 12px; font-weight: 700; border-radius: 10px; border: none; box-shadow: 0 4px 10px rgba(230, 74, 25, 0.15); width: 28%; text-align: center; }
-        .btn-buy:disabled { background: #eaeaea; color: #9e9e9e; box-shadow: none; cursor: not-allowed; }
-
-        /* Khối hiển thị dữ liệu tài nguyên trả về sau khi mua */
-        .success-box { background: #e8f5e9; border: 1px solid #2e7d32; padding: 14px; border-radius: 14px; margin-bottom: 16px; }
-        .success-title { color: #2e7d32; font-size: 13px; font-weight: 800; margin-bottom: 6px; }
-        textarea { width: 100%; background: #ffffff; border: 1px solid #c8e6c9; border-radius: 10px; padding: 12px; color: #2e7d32; font-family: monospace; font-size: 13px; resize: none; outline: none; }
+        .menu-item:active { transform: scale(0.97); }
+        .menu-item:disabled { background: #ccc !important; color: #888; cursor: not-allowed; box-shadow: none; }
         
-        footer { text-align: center; font-size: 11px; color: #9e9e9e; margin-top: 40px; }
+        /* Bảng Màu Gradient Khớp Với Từng Nút Trong Ảnh */
+        .bg-orange { background: linear-gradient(90deg, #ff6f00, #ff8f00); }
+        .bg-black { background: linear-gradient(90deg, #1e293b, #0f172a); }
+        .bg-rainbow { background: linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6); }
+        .bg-cyan { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+        .bg-amber { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .bg-blue { background: linear-gradient(90deg, #2563eb, #3b82f6); }
+        .bg-magenta { background: linear-gradient(90deg, #db2777, #f472b6); }
+        .bg-green { background: linear-gradient(90deg, #10b981, #34d399); }
+
+        /* Hộp Thông Báo Trả Hàng */
+        .success-box { background: #e8f5e9; border: 1px solid #2e7d32; padding: 12px; border-radius: 12px; margin-bottom: 12px; font-size: 13px; }
+        .success-title { color: #2e7d32; font-weight: bold; margin-bottom: 6px; }
+        textarea { width: 100%; padding: 10px; border: 1px solid #c8e6c9; border-radius: 8px; color: #2e7d32; font-family: monospace; font-size: 12px; resize: none; outline: none; background: #fff; }
+
+        footer { text-align: center; font-size: 10px; color: #999; margin-top: 30px; }
     </style>
 </head>
 <body>
 
+    <!-- Header Đồng Bộ Ảnh Mẫu -->
     <header>
-        <div class="logo-title">Datashop Pro</div>
-        <div class="logo-sub">Hệ thống phân phối tài nguyên tự động</div>
+        <div class="logo-box">
+            <div class="logo-icon">⭐</div>
+            <div class="logo-text">NgânMiu.Store</div>
+        </div>
+        
+        <!-- Khối Đăng Nhập / Đăng Ký trước đăng nhập (Ảnh mẫu 1) -->
+        <div id="auth-section" class="header-auth-grid">
+            <button type="button" onclick="tienHanhDangNhap()" class="header-btn">🔑 Đăng nhập</button>
+            <button type="button" onclick="tienHanhDangKy()" class="header-btn">📝 Đăng ký</button>
+        </div>
+
+        <!-- Khối Ví số dư hiển thị sau đăng nhập thành công (Ảnh mẫu 2) -->
+        <div id="profile-section" style="display: none;" class="w-full">
+            <div class="header-profile-grid">
+                <span style="font-size: 12px; font-weight: bold;">👤 <span id="display-name">---</span></span>
+                <button class="profile-btn">Cài Đặt</button>
+                <button onclick="location.reload()" class="profile-btn">Thoát</button>
+            </div>
+            <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 8px; margin-top: 6px; display: flex; justify-content: space-between; font-size: 12px; font-weight: bold;">
+                <span style="color: #ffeb3b;">💰 Ví số dư: <span id="display-balance">0đ</span></span>
+                <span style="color: #a7f3d0;">KM: 0đ</span>
+            </div>
+        </div>
     </header>
 
     <main class="container">
-        
-        <!-- Khối Form Đăng Nhập / Đăng Ký -->
-        <div id="auth-section" class="auth-card">
-            <div class="input-row">
-                <input id="form-user" type="text" placeholder="Tên tài khoản..." class="input-style">
-                <input id="form-pass" type="password" placeholder="Mật khẩu..." class="input-style">
-            </div>
-            <div class="btn-grid">
-                <!-- Gài hàm trực tiếp bằng onclick thuần để cảm ứng ăn ngay, loại bỏ ID trung gian lỗi -->
-                <button type="button" onclick="tienHanhDangNhap()" class="btn btn-login">🔑 Đăng nhập</button>
-                <button type="button" onclick="tienHanhDangKy()" class="btn btn-register">📝 Đăng ký</button>
+
+        <!-- Thanh thông báo chạy chữ -->
+        <div class="marquee-box">
+            <span>📢</span>
+            <div class="marquee-text">
+                <marquee scrollamount="4">Hệ thống mở bán tài nguyên tự động Shopee, Gmail, Facebook, TikTok sạch 100%...</marquee>
             </div>
         </div>
 
-        <!-- Khung Ví số dư thành viên (Mặc định ẩn) -->
-        <div id="profile-section" style="display: none;" class="wallet-card">
-            <div class="user-tag">👤 Tài khoản: <span id="display-name">---</span></div>
-            <div class="balance-tag" id="display-balance">0đ</div>
-        </div>
-
-        <!-- Khối hiển thị nhận hàng khi mua thành công -->
+        <!-- Hộp Trả Hàng (Tự hiện khi mua xong) -->
         <div id="success-box" style="display: none;" class="success-box">
             <div class="success-title">🎉 ĐÃ MUA HÀNG THÀNH CÔNG!</div>
-            <textarea id="result-resource" readonly rows="4" placeholder="Tài nguyên của bạn hiện ở đây..."></textarea>
+            <textarea id="result-resource" readonly rows="4" placeholder="Tài nguyên hiển thị ở đây..."></textarea>
         </div>
 
-        <!-- Tiêu đề danh mục và nút làm mới -->
-        <div class="section-bar">
-            <span>Danh mục tài nguyên</span>
-            <button onclick="fetchProducts()" class="btn-refresh">🔄 Tải lại kho</button>
-        </div>
+        <!-- Khung Nhập Dữ Liệu & Hệ Thống Nút Bấm Lưới (Giống ảnh mẫu) -->
+        <div class="card-panel">
+            <div class="panel-header">Nhập Tài Khoản Xác Thực / Mua Hàng</div>
+            <div class="input-row" id="inputs-box">
+                <input id="form-user" type="text" placeholder="Tên tài khoản..." class="input-control">
+                <input id="form-pass" type="password" placeholder="Mật khẩu..." class="input-control">
+            </div>
 
-        <!-- Danh sách kho hàng tự động -->
-        <div id="products-grid" class="products-list">
-            <div style="text-align: center; color: #9e9e9e; padding: 24px; font-size: 13px;">
-                Đang kết nối API và đồng bộ kho hàng...
+            <!-- Hệ thống nút bấm lưới đa màu sắc đồng bộ hoàn hảo với kho Firebase -->
+            <div class="menu-grid">
+                <button type="button" onclick="executePurchase('prod_1', 'ACC Shopee')" id="btn-prod_1" class="menu-item bg-orange">🧡 Mua ACC Shopee (<span id="stock-prod_1">0</span>)</button>
+                <button type="button" onclick="executePurchase('prod_4', 'ACC Top Tóp')" id="btn-prod_4" class="menu-item bg-black">🖤 Mua ACC Top Tóp (<span id="stock-prod_4">0</span>)</button>
+                
+                <button type="button" onclick="executePurchase('prod_3', 'Số Shopee - Top Top')" id="btn-prod_3" class="menu-item bg-rainbow">💙 Mua Số FB/Shopee (<span id="stock-prod_3">0</span>)</button>
+                <button type="button" class="menu-item bg-cyan" disabled>🔍 Lọc Số Shopee</button>
+                
+                <button type="button" class="menu-item bg-amber" disabled>🛒 Deal Sốc 1k</button>
+                <button type="button" class="menu-item bg-orange" disabled>🎟️ Add Voucher</button>
+                
+                <button type="button" class="menu-item bg-cyan" disabled>🎯 Check Voucher</button>
+                <button type="button" class="menu-item bg-blue" disabled>🔐 Lấy Cookie QR</button>
+                
+                <button type="button" onclick="executePurchase('prod_2', 'Gmail Ngoại Info')" id="btn-prod_2" class="menu-item bg-blue">📧 Đọc Mail - Thêm Mail (<span id="stock-prod_2">0</span>)</button>
+                <button type="button" class="menu-item bg-magenta" disabled>📊 Thuê Bảng Sheet</button>
             </div>
         </div>
+
     </main>
 
     <footer>
-        <p>© 2026 DATASHOP AUTOMATION • PREMIUM VERSION</p>
+        <p>© 2026 DATASHOP PREMIUM VERSION</p>
     </footer>
 
     <script>
         const API_URL = "https://google.com";
         let savedUsername = "";
 
-        // Hàm gọi danh mục hàng hóa từ API
-        async function fetchProducts() {
-            const grid = document.getElementById('products-grid');
-            try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify({ action: 'get_products' })
-                });
-                const resData = await response.json();
-                
-                if (resData.status === "success") {
-                    grid.innerHTML = "";
-                    resData.products.forEach(p => {
-                        grid.innerHTML += `
-                            <div class="product-card">
-                                <div class="prod-info">
-                                    <div class="prod-name">${p.name}</div>
-                                    <div class="prod-meta">
-                                        <span class="price-text">${p.price.toLocaleString()}đ</span>
-                                        <span class="${p.stock > 0 ? 'stock-text' : 'stock-empty'}">${p.stock > 0 ? 'Kho: ' + p.stock + ' cái' : 'Hết hàng'}</span>
-                                    </div>
-                                </div>
-                                <button onclick="executePurchase('${p.id}')" ${p.stock === 0 ? 'disabled' : ''} class="btn-buy">
-                                    ${p.stock > 0 ? 'Mua ngay' : 'Hết hàng'}
-                                </button>
-                            </div>
-                        `;
-                    });
-                }
-            } catch (err) {
